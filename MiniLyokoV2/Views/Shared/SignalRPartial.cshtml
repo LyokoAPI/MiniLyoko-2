@@ -1,0 +1,10 @@
+
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script type="text/javascript">
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/MiniLyokoHub")
+        .configureLogging(signalR.LogLevel.Information) 
+        .build();
+    connection.start();   
+    
+</script>

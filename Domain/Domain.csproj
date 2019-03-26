@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="LyokoAPI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\LAPI-Git\LyokoAPI\bin\Debug\LyokoAPI.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

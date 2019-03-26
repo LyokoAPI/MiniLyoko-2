@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class = "window" id="CommandWindow">
+    <article style="border-bottom: black dashed 1px" id="CommandLog">
+        <p>Welcome to MiniLyoko</p>
+    </article>
+    <article id="commandInput">
+        <form id="commandForm">
+            <label for="rawCommand">Command:</label>
+            <input id="rawCommand" type="text"/>
+            <button type="submit">Send command</button>
+        </form>
+    </article>
+</section>
+
+<section class="window" id="LyokoLogger"></section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        connection.on("LoggerEvent",
+            function(message) {
+                $('#LyokoLogger').append(message).append("<br>");
+                updateScroll();
+            });
+        
+        $('#commandForm').submit(function (event) {
+            event.preventDefault();
+            doCommand($('#rawCommand').val());
+            $(this)[0].reset();
+            return false;
+        });
+        connection.on("CommandOutputEvent",
+            function(message) {
+                let outputElement = $(`<p>->${message}</p>`);
+                $('#CommandLog').prepend(outputElement).css('color','gray');
+            });
+        
+        function doCommand(command) {
+            let commandElement = $(`<p class="command">${command}</p>`);
+            $('#CommandLog').prepend(commandElement);
+            connection.invoke("CommandInputEvent",command);
+        }
+        function updateScroll(){
+            let element = document.getElementById("LyokoLogger");
+            element.scrollTop = element.scrollHeight;
+        }
+        
+        
+    </script>
+}

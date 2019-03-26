@@ -1,0 +1,31 @@
+.window{
+    display: block;
+    border: black 2px solid;
+    height: 50vh; 
+    width: 30vw
+}
+#CommandWindow{
+    float: right;
+}
+#LyokoLogger{
+    float: left;
+    overflow: auto;
+}
+#CommandLog{
+    display: flex;
+    flex-direction: column-reverse;
+    height: 90%;
+    position: relative;
+    overflow: hidden;
+}
+#CommandLog p{
+    clear: right;
+    float: left;
+    display: inline-block;
+    margin: 0;
+    border: 0;
+}
+.command{
+    color: black;
+}
+
