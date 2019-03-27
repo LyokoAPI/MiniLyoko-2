@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using Backend.Commands;
 using Backend.Commands.aelita;
 using Backend.Commands.xana;
+using LyokoPluginLoader;
 
 namespace Backend
 {
@@ -15,6 +19,7 @@ namespace Backend
         {
             Commands = new List<Command>(){new Xana(), new Aelita()};
             _listener = new Listener(Commands,port);
+            PluginLoader loader = new PluginLoader(Path.Combine(Directory.GetCurrentDirectory(),"Plugins"));
         }
 
         public static Backend Initialize(int port)

@@ -14,17 +14,21 @@ namespace MiniLyokoV2.Controllers
 
         private static Backend.Backend _backend;
 
+        
         public HomeController()
         {
-            if (_backend == null)
-            {
-                _backend = Backend.Backend.Initialize(Program.Port);
-            }
+            
+        }
+        private static async Task initializeBackend()
+        {
+            await Task.Delay(5000);
+            _backend = Backend.Backend.Initialize(Program.Port);
         }
 
-
+       
         public IActionResult Index()
         {
+            initializeBackend();
             return View();
         }
 

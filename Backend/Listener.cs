@@ -43,7 +43,10 @@ namespace Backend
         private async void StartConnection()
         {
             
-            connection.On("CommandInputEvent", (string command) => OnSignalRCommand(command));
+            connection.On("CommandInputEvent", (string command) =>
+            {
+                OnSignalRCommand(command);
+            });
             await connection.StartAsync();
         }
 
@@ -83,6 +86,7 @@ namespace Backend
 
         private void OnCommand(string commandstring)
         {
+            
             string[] commandargs = commandstring.Split(".");
             var commandname = commandargs[0];
             if (commandargs.Length < 2)
@@ -98,7 +102,7 @@ namespace Backend
             command?.Run(commandargs);
             if (command == null)
             {
-                CommandOutputEvent.Call(commandstring,"Command not recognized!");
+                LyokoLogger.Log(commandstring,"Command not recognized!");
             }
             
         }

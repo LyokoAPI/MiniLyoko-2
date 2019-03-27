@@ -8,6 +8,9 @@
       <Reference Include="LyokoAPI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\..\LAPI-Git\LyokoAPI\bin\Debug\LyokoAPI.dll</HintPath>
       </Reference>
+      <Reference Include="LyokoPluginLoader, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\PluginLoader\LyokoPluginLoader\bin\Debug\LyokoPluginLoader.dll</HintPath>
+      </Reference>
       <Reference Include="Microsoft.AspNetCore.SignalR.Client.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
         <HintPath>..\..\..\..\..\..\..\..\..\home\jack\.nuget\packages\microsoft.aspnetcore.signalr.client.core\1.1.0\lib\netstandard2.0\Microsoft.AspNetCore.SignalR.Client.Core.dll</HintPath>
       </Reference>
