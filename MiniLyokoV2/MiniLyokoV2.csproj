@@ -21,7 +21,7 @@
 
     <ItemGroup>
       <Reference Include="LyokoAPI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\LAPI-Git\LyokoAPI\bin\Debug\LyokoAPI.dll</HintPath>
+        <HintPath>..\..\..\Rider\Personal\LAPI\LAPI-Git\LyokoAPI\bin\Debug\LyokoAPI.dll</HintPath>
       </Reference>
     </ItemGroup>
 
