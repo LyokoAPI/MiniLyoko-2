@@ -7,6 +7,7 @@ using System.Net.Security;
 using System.Threading.Tasks;
 using Backend.Commands;
 using LyokoAPI.Events;
+using LyokoAPI.Events.EventArgs;
 using LyokoAPI.VirtualStructures;
 using LyokoAPI.VirtualStructures.Interfaces;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -18,17 +19,17 @@ namespace Backend
         private HubConnection connection;
         private List<Command> Commands;
 
-        public Listener(ICollection<Command> commands,int port)
+        public Listener(ICollection<Command> commands, int port)
         {
             Commands = new List<Command>(commands);
             /*ServicePointManager.ServerCertificateValidationCallback +=
                 (sender, certificate, chain, sslPolicyErrors) => true;*/
-            connection = new HubConnectionBuilder().WithUrl($"http://localhost:{port}/MiniLyokoHub" ).Build();
-            
+            connection = new HubConnectionBuilder().WithUrl($"http://localhost:{port}/MiniLyokoHub").Build();
+
             StartConnection();
             connection.Closed += async (error) =>
             {
-                await Task.Delay(new Random().Next(0,5) * 1000);
+                await Task.Delay(new Random().Next(0, 5) * 1000);
                 await connection.StartAsync();
             };
 
@@ -42,16 +43,10 @@ namespace Backend
 
         private async void StartConnection()
         {
-            
-            connection.On("CommandInputEvent", (string command) =>
-            {
-                OnSignalRCommand(command);
-            });
+            connection.On("CommandInputEvent", (string command) => { OnSignalRCommand(command); });
             await connection.StartAsync();
         }
 
-        
-        
 
         private void OnTowerActivation(ITower tower)
         {
@@ -67,50 +62,38 @@ namespace Backend
         {
             connection.InvokeAsync("TowerHijackEvent", tower, oldActivator, newActivator);
         }
-        
-        
+
+
         private void OnSignalRCommand(string command)
         {
             CommandInputEvent.Call(command);
         }
-        
-        private void OnCommandOutput(string output)
+
+        private void OnCommandOutput(string arg)
         {
-            connection.InvokeAsync("CommandOutputEvent", output);
-        }
-       
-        private void OnLogger(string message)
-        {
-            connection.InvokeAsync("LoggerEvent", message);
+            connection.InvokeAsync("CommandOutputEvent", arg);
         }
 
-        private void OnCommand(string commandstring)
+        private void OnLogger(string arg)
         {
-            
-            string[] commandargs = commandstring.Split(".");
+            connection.InvokeAsync("LoggerEvent", arg);
+        }
+
+        private void OnCommand(string arg)
+        {
+            string[] commandargs = arg.Split(".");
             var commandname = commandargs[0];
-            if (commandargs.Length < 2)
+            if (commandargs.Length > 1)
             {
-                commandargs = new string[]{};
+                commandargs = commandargs.ToList().GetRange(1, commandargs.Length - 1).ToArray();
             }
             else
             {
-                commandargs = commandargs.ToList().GetRange(1, commandargs.Length).ToArray();
+                commandargs = new string[] { };
             }
 
-            var command = Commands.FirstOrDefault(commandd => commandd.Name == commandname);
+            var command = Commands.Find(commandd => commandd.Name.Equals(commandname));
             command?.Run(commandargs);
-            if (command == null)
-            {
-                LyokoLogger.Log(commandstring,"Command not recognized!");
-            }
-            
         }
-        
-        
-        
-        
-        
-
     }
 }
