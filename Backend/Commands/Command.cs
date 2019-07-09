@@ -38,7 +38,7 @@ namespace Backend.Commands
             var subcommand = args[0];
             if (args.Length > 1)
             {
-                args = args.ToList().GetRange(1, args.Length).ToArray();
+                args = args.ToList().GetRange(1, args.Length - 1).ToArray();
             }
             else
             {

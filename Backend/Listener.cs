@@ -91,7 +91,6 @@ namespace Backend
             {
                 commandargs = new string[] { };
             }
-
             var command = Commands.Find(commandd => commandd.Name.Equals(commandname));
             command?.Run(commandargs);
         }

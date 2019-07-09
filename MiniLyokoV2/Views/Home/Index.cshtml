@@ -22,7 +22,7 @@
     <script type="text/javascript">
         connection.on("LoggerEvent",
             function(message) {
-                $('#LyokoLogger').append(message).append("<br>");
+                $('#LyokoLogger').append(message.replace(/\n/g,"<br>")).append("<br><br>");
                 updateScroll();
             });
         
@@ -34,7 +34,7 @@
         });
         connection.on("CommandOutputEvent",
             function(message) {
-                let outputElement = $(`<p>->${message}</p>`);
+                let outputElement = $(`<p>->${message.replace(/\n/g,"<br>")}</p>`);
                 $('#CommandLog').prepend(outputElement).css('color','gray');
             });
         
