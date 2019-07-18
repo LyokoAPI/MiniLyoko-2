@@ -22,7 +22,15 @@ namespace MiniLyokoV2.Controllers
         private static async Task initializeBackend()
         {
             await Task.Delay(5000);
-            _backend = Backend.Backend.Initialize(Program.Port);
+            try
+            {
+                _backend = Backend.Backend.Initialize(Program.Port,Startup.Lifetime);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;
+            }
         }
 
        

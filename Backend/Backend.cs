@@ -6,6 +6,8 @@ using Backend.Commands;
 using Backend.Commands.aelita;
 using Backend.Commands.xana;
 using LyokoPluginLoader;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 
 namespace Backend
 {
@@ -15,18 +17,19 @@ namespace Backend
         private List<Command> Commands;
         private Listener _listener;
 
-        private Backend(int port)
+        private Backend(int port, IApplicationLifetime lifetime)
         {
             Commands = new List<Command>(){new Xana(), new Aelita()};
             _listener = new Listener(Commands,port);
             PluginLoader loader = new PluginLoader(Path.Combine(Directory.GetCurrentDirectory(),"Plugins"));
+            lifetime.ApplicationStopping.Register((() => loader.DisableAll()));  
         }
 
-        public static Backend Initialize(int port)
+        public static Backend Initialize(int port, IApplicationLifetime lifetime)
         {
             if (instance == null)
             {
-                return instance = new Backend(port);
+                return instance = new Backend(port, lifetime);
             }
             else
             {

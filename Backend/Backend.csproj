@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="LyokoAPI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\Rider\Personal\LAPI\LAPI-Git\LyokoAPI\bin\Debug\LyokoAPI.dll</HintPath>
+      <Reference Include="Microsoft.AspNetCore.Hosting, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.hosting\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.dll</HintPath>
       </Reference>
-      <Reference Include="LyokoPluginLoader, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\Rider\Personal\LAPI\PluginLoader\LyokoPluginLoader\bin\Debug\LyokoPluginLoader.dll</HintPath>
+      <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.hosting.abstractions\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.AspNetCore.SignalR.Client.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
         <HintPath>..\..\..\..\..\..\..\..\..\home\jack\.nuget\packages\microsoft.aspnetcore.signalr.client.core\1.1.0\lib\netstandard2.0\Microsoft.AspNetCore.SignalR.Client.Core.dll</HintPath>
@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="LyokoPluginLoader" Version="2.0.0-beta1" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
     </ItemGroup>
 

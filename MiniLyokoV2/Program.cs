@@ -18,11 +18,12 @@ namespace MiniLyokoV2
         {
             var webhost = CreateWebHostBuilder(args).Build();
 
-            string adress = webhost.ServerFeatures.Get<IServerAddressesFeature>().Addresses.First(adresss => !adresss.Contains("https"));
+            string adress = webhost.ServerFeatures.Get<IServerAddressesFeature>().Addresses.FirstOrDefault(adresss => !adresss.Contains("https"));
             string portstring = adress.Split(':')[2];
             Console.WriteLine($"adress: {adress} portstring: {portstring}");
             int port = Int32.Parse(portstring);
             Port = port;
+           
             webhost.Run();
         }
 
