@@ -7,6 +7,7 @@
 
 
     <ItemGroup>
+        <PackageReference Include="LyokoPluginLoader" Version="2.0.0-beta3" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
         <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
@@ -16,13 +17,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Backend\Backend.csproj" />
       <ProjectReference Include="..\Domain\Domain.csproj" />
-    </ItemGroup>
-
-
-    <ItemGroup>
-      <Reference Include="LyokoAPI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\Rider\Personal\LAPI\LAPI-Git\LyokoAPI\bin\Debug\LyokoAPI.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>

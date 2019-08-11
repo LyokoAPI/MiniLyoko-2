@@ -5,12 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="LyokoAPI, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\Rider\Personal\LAPI\LAPI-Git\LyokoAPI\bin\Debug\LyokoAPI.dll</HintPath>
-      </Reference>
-      <Reference Include="LyokoPluginLoader, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\Rider\Personal\LAPI\Builds\PluginLoader\LyokoPluginLoader.dll</HintPath>
-      </Reference>
+      <PackageReference Include="LyokoPluginLoader" Version="2.0.0-beta3" />
     </ItemGroup>
 
 </Project>
