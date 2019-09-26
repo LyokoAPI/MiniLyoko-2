@@ -10,6 +10,7 @@ namespace Backend.Commands
     {
         public abstract string Name { get; set; }
         public virtual string DisplayName => Name;
+        public virtual string Usage => GetSubCommandsAsString();
         private string[] _args;
         public virtual List<Command> subCommands { get; protected set; } = new List<Command>();
         public void Run(string[] args = null)
@@ -87,6 +88,31 @@ namespace Backend.Commands
             }
 
             return result;
+        }
+
+        private string GetSubCommandsAsString()
+        {
+            string sub = "[";
+            foreach (var command in subCommands)
+            {
+                sub += $"{this.Name}.{command.Name},";
+            }
+
+            sub = sub.TrimEnd(',');
+            sub.Append(']');
+            return sub;
+        }
+
+        private string GetUsage()
+        {
+            if (subCommands.Any())
+            {
+                return GetSubCommandsAsString();
+            }
+            else
+            {
+                return "N/A";
+            }
         }
     }
 }
