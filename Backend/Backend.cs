@@ -20,6 +20,7 @@ namespace Backend
         private Backend(int port, IApplicationLifetime lifetime)
         {
             Commands = new List<Command>(){new Xana(), new Aelita()};
+            var help = new Help( ref Commands);
             _listener = new Listener(Commands,port);
             PluginLoader loader = new PluginLoader(Path.Combine(Directory.GetCurrentDirectory(),"Plugins"));
             lifetime.ApplicationStopping.Register((() => loader.DisableAll()));  
