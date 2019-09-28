@@ -23,6 +23,7 @@ namespace Backend
             var help = new Help( ref Commands);
             _listener = new Listener(Commands,port);
             PluginLoader loader = new PluginLoader(Path.Combine(Directory.GetCurrentDirectory(),"Plugins"));
+            LoaderInfo.DevMode = true;
             lifetime.ApplicationStopping.Register((() => loader.DisableAll()));  
         }
 
