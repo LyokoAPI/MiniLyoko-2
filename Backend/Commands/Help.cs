@@ -41,8 +41,7 @@ namespace Backend.Commands
 
         private string CommandList()
         {
-            string list = "help";
-            list+=(" [");
+            string list = "[help";
             foreach (var command in _commands)
             {
                 list += $",{command.Name}";
